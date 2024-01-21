@@ -9,7 +9,15 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "~3.11"
 gradio = "^4.15.0"
+tensorflow-text = "^2.15.0"
+tensorflow-hub = "^0.15.0"
+torch = {version = "^2.1.2+cpu", source = "torch-cpu"}
 
+
+[[tool.poetry.source]]
+name = "torch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"
 
 [build-system]
 requires = ["poetry-core"]
