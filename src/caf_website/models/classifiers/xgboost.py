@@ -152,7 +152,7 @@ class XGBoost(IClassifier, IBaseClassifier):
             labeller = lambda i: str(i)
 
         return [
-            {labeller(i): ppreds[j][i] for i in range(nclasses)} for j in range(nobs)
+            {labeller(i): float(ppreds[j][i]) for i in range(nclasses)} for j in range(nobs)
         ]
 
     def fit(

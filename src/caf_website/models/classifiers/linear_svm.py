@@ -83,7 +83,7 @@ class LinearSVM(IClassifier, IBaseClassifier):
             labeller = lambda i: str(self.model.classes_[i])
 
         preds = [
-            {labeller(i): ppreds[j][i] for i in range(nclasses)} for j in range(nobs)
+            {labeller(i): float(ppreds[j][i]) for i in range(nclasses)} for j in range(nobs)
         ]
         return preds
 
