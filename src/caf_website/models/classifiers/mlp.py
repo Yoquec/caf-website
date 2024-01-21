@@ -68,10 +68,10 @@ class MLP(IBaseClassifier):
 
         # Add the hidden layers
         for layer in params[MLPParam.LAYERS]:
-            model.add_layer(layer)
+            model.addLayer(layer)
 
         # Add the output layer
-        model.add_layer(
+        model.addLayer(
             PerceptronLayer(int(params[MLPParam.OUTPUT_SIZE]), F.log_softmax, False)
         )
         model.addCriterion(params[MLPParam.CRITERION])
