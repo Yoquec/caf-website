@@ -12,6 +12,8 @@ gradio = "^4.15.0"
 tensorflow-text = "^2.15.0"
 tensorflow-hub = "^0.15.0"
 torch = {version = "^2.1.2+cpu", source = "torch-cpu"}
+spacy = "^3.7.2"
+pyspellchecker = "^0.8.1"
 
 
 [[tool.poetry.source]]
