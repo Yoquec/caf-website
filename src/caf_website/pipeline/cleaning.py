@@ -1,17 +1,14 @@
 import re
-from functools import reduce
 
 import spacy
 from spellchecker import SpellChecker
+
+from ..utils import compose
 
 __all__ = ["clean_sentence"]
 
 _nlp = spacy.load("es_core_news_sm")
 _checker = SpellChecker(language="es")
-
-
-def __compose(*fns):
-    return reduce(lambda f, g: lambda x: f(g(x)), fns)
 
 
 def _replace_chars(text: str) -> str:
@@ -43,7 +40,7 @@ def _spell_checking(text: str) -> str:
     )
 
 
-__cleaning_pipeline = __compose(
+__cleaning_pipeline = compose(
     lambda x: x.lower(),
     _replace_chars,
     _remove_all_digit_words_and_degrees,

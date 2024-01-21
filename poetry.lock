@@ -511,6 +511,22 @@ testing = ["covdefaults (>=2.3)", "coverage (>=7.3.2)", "diff-cover (>=8)", "pyt
 typing = ["typing-extensions (>=4.8)"]
 
 [[package]]
+name = "flamenn"
+version = "0.1.3"
+description = "Flamenn is a high-level PyTorch wrapper for rapid model protyping. It uses a builder pattern for creating network arquitectures using PyTorch's components."
+optional = false
+python-versions = ">=3.8,<3.12"
+files = [
+    {file = "flamenn-0.1.3-py3-none-any.whl", hash = "sha256:97dc74e893cac9c17896ed834d618844d70920e6592d66cd8e8177953685bb27"},
+    {file = "flamenn-0.1.3.tar.gz", hash = "sha256:76da60cb52c6e2e54a3111ec83fbd932e6ea5e4d15ce4db4b3136c444d75807a"},
+]
+
+[package.dependencies]
+numpy = ">=1.26.2,<2.0.0"
+torch = ">=2.1.2,<3.0.0"
+tqdm = ">=4.66.1,<5.0.0"
+
+[[package]]
 name = "flatbuffers"
 version = "23.5.26"
 description = "The FlatBuffers serialization format for Python"
@@ -3477,7 +3493,34 @@ files = [
     {file = "wrapt-1.14.1.tar.gz", hash = "sha256:380a85cf89e0e69b7cfbe2ea9f765f004ff419f34194018a6827ac0e3edfed4d"},
 ]
 
+[[package]]
+name = "xgboost"
+version = "2.0.3"
+description = "XGBoost Python Package"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "xgboost-2.0.3-py3-none-macosx_10_15_x86_64.macosx_11_0_x86_64.macosx_12_0_x86_64.whl", hash = "sha256:b21b2bb188b162c615fce468db93e3f995f3690e6184aadc7743b58466dc7f13"},
+    {file = "xgboost-2.0.3-py3-none-macosx_12_0_arm64.whl", hash = "sha256:722d5b9351dfdf61973490dfd28abd42844db1cc469d07ed9b0cde9d1ffcdb32"},
+    {file = "xgboost-2.0.3-py3-none-manylinux2014_aarch64.whl", hash = "sha256:2315a57b1883221e2f78dd514559aa9797e6c272d995d22e45495a04adac93cc"},
+    {file = "xgboost-2.0.3-py3-none-manylinux2014_x86_64.whl", hash = "sha256:30bd5f789fad467fd49e04e5d19e04238b931682c3951a514da5c2410b3bf59c"},
+    {file = "xgboost-2.0.3-py3-none-win_amd64.whl", hash = "sha256:462f131d7bfb1bc42f67c57fa5aa3e57d2b5755b1573a6e0d2c7e8895164e0fc"},
+    {file = "xgboost-2.0.3.tar.gz", hash = "sha256:505955b5d770f8217a049beecce79e04a93787371c06dfb4b2414fec9d496bf3"},
+]
+
+[package.dependencies]
+numpy = "*"
+scipy = "*"
+
+[package.extras]
+dask = ["dask", "distributed", "pandas"]
+datatable = ["datatable"]
+pandas = ["pandas"]
+plotting = ["graphviz", "matplotlib"]
+pyspark = ["cloudpickle", "pyspark", "scikit-learn"]
+scikit-learn = ["scikit-learn"]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "32b1ac6852ee204feee6fe2d229a650e876884a78e3940ee345b32c8bddc9e1c"
+content-hash = "9d306301f193e75d449d2c13c52d3d9e54837cf79fec3a36381246e3deff64e1"
