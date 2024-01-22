@@ -8,7 +8,7 @@ INTRO = dedent(
     """
 )
 DBSCAN_CLUSTER_LABELS = (
-    "Avería desconodida",
+    "Avería desconocida",
     "Funcionamiento correcto",
     "La pieza presenta una avería",
     "Necesita arena",
