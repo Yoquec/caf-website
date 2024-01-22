@@ -18,6 +18,14 @@ model_paths: dict[Tuple[Classifier, Embedder], Path] = {
     (Classifier.LSVM, Embedder.NNLM): Path("models/svm_nnlm.pkl"),
     (Classifier.MLP, Embedder.NNLM): Path("models/mlp_state_dict_nnlm.pkl"),
     (Classifier.XGBOOST, Embedder.NNLM): Path("models/xgboost_internal_nnlm.json"),
+    # MLT embeddings
+    (Classifier.LSVM, Embedder.MLT): Path("models/svm_mlt.pkl"),
+    (Classifier.MLP, Embedder.MLT): Path("models/mlp_state_dict_mlt.pkl"),
+    (Classifier.XGBOOST, Embedder.MLT): Path("models/xgboost_internal_mlt.json"),
+    # W2V embeddings
+    (Classifier.LSVM, Embedder.W2V): Path("models/svm_w2v.pkl"),
+    (Classifier.MLP, Embedder.W2V): Path("models/mlp_state_dict_w2v.pkl"),
+    (Classifier.XGBOOST, Embedder.W2V): Path("models/xgboost_internal_w2v.json"),
 }
 
 mlp_configurations: dict[Embedder, dict[MLPParam, Any]] = {
@@ -27,6 +35,29 @@ mlp_configurations: dict[Embedder, dict[MLPParam, Any]] = {
         MLPParam.LEARNING_RATE: 0.001,
         MLPParam.CRITERION: F.nll_loss,
         MLPParam.LAYERS: [
+            PerceptronLayer(64, F.relu, False),
+            PerceptronLayer(32, F.relu, False),
+        ],
+    },
+    Embedder.MLT: {
+        MLPParam.INPUT_SIZE: 512,
+        MLPParam.OUTPUT_SIZE: 12,
+        MLPParam.LEARNING_RATE: 0.001,
+        MLPParam.CRITERION: F.nll_loss,
+        MLPParam.LAYERS: [
+            PerceptronLayer(256, F.relu, False),
+            PerceptronLayer(128, F.relu, False),
+            PerceptronLayer(64, F.relu, False),
+            PerceptronLayer(32, F.relu, False),
+        ],
+    },
+    Embedder.W2V: {
+        MLPParam.INPUT_SIZE: 300,
+        MLPParam.OUTPUT_SIZE: 12,
+        MLPParam.LEARNING_RATE: 0.001,
+        MLPParam.CRITERION: F.nll_loss,
+        MLPParam.LAYERS: [
+            PerceptronLayer(128, F.relu, False),
             PerceptronLayer(64, F.relu, False),
             PerceptronLayer(32, F.relu, False),
         ],
