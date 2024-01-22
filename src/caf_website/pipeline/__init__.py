@@ -17,7 +17,7 @@ model_paths: dict[Tuple[Classifier, Embedder], Path] = {
     # NNLM embeddings
     (Classifier.LSVM, Embedder.NNLM): Path("models/svm_nnlm.pkl"),
     (Classifier.MLP, Embedder.NNLM): Path("models/mlp_state_dict_nnlm.pkl"),
-    (Classifier.XGBOOST, Embedder.NNLM): Path("models/xgboost_nnlm.pkl"),
+    (Classifier.XGBOOST, Embedder.NNLM): Path("models/xgboost_internal_nnlm.json"),
 }
 
 mlp_configurations: dict[Embedder, dict[MLPParam, Any]] = {
@@ -60,7 +60,7 @@ def predict(
         case Classifier.LSVM:
             model = linear_svm.LinearSVM.load(model_paths[(classifier, embedder)])
         case Classifier.XGBOOST:
-            model = xgboost.XGBoost.load(model_paths[(classifier, embedder)])
+            model = xgboost.XGBoost.load_model(model_paths[(classifier, embedder)])
         case Classifier.MLP:
             model = mlp.MLP.load(
                 model_paths[(classifier, embedder)], mlp_configurations[embedder]

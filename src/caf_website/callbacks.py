@@ -7,6 +7,8 @@ from .models.catalog import (Classifier, Embedder, parse_classifier,
                              parse_embedder)
 from .strings import DBSCAN_CLUSTER_LABELS
 
+DECISION_THRESHOLD = 0.15
+
 
 def predict(
     model_selector: list | str, embedding_selector: Optional[str], text_input: str
@@ -23,9 +25,17 @@ def predict(
 
     rawpreds = pl.predict(text_input, embedding, model)
 
-    return {
-        DBSCAN_CLUSTER_LABELS[k]: v for k, v in enumerate(rawpreds.values()) if v > 0.3
+    filteredpreds = {
+        DBSCAN_CLUSTER_LABELS[k]: v
+        for k, v in enumerate(rawpreds.values())
+        if v > DECISION_THRESHOLD
     }
+
+    if len(filteredpreds) == 0:
+        breakpoint()
+        return {"No se ha podido clasificar": 1.0}
+    else:
+        return filteredpreds
 
 
 def show_labels(

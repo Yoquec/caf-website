@@ -70,9 +70,9 @@ class MLP(IBaseClassifier):
         for layer in params[MLPParam.LAYERS]:
             model.addLayer(layer)
 
-        # Add the output layer
+        # Add the output layer (softmax for output probabilities)
         model.addLayer(
-            PerceptronLayer(int(params[MLPParam.OUTPUT_SIZE]), F.log_softmax, False)
+            PerceptronLayer(int(params[MLPParam.OUTPUT_SIZE]), F.softmax, False)
         )
         model.addCriterion(params[MLPParam.CRITERION])
         model.addOptim("adam", learning_rate=params[MLPParam.LEARNING_RATE])
