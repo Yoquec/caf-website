@@ -7,7 +7,7 @@ from .models.catalog import (Classifier, Embedder, parse_classifier,
                              parse_embedder)
 from .strings import DBSCAN_CLUSTER_LABELS
 
-DECISION_THRESHOLD = 0.15
+DECISION_THRESHOLD = 0.1
 
 
 def predict(
@@ -32,7 +32,6 @@ def predict(
     }
 
     if len(filteredpreds) == 0:
-        breakpoint()
         return {"No se ha podido clasificar": 1.0}
     else:
         return filteredpreds
